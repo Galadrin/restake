@@ -183,6 +183,9 @@ class App extends React.Component {
             <a href="https://cros-nest.com" aria-current="page" class="brand w-nav-brand w--current">
               <img src={Logo} alt="Cros-Nest" loading="lazy" width="114" />
             </a>
+            <span onClick={() => this.setState({showAbout: true})} role="button" className="text-dark text-decoration-none">
+              <img src={Logo} srcSet={`${Logo2x} 2x, ${Logo3x} 3x`} alt="REStake" loading="lazy" width="114" />
+            </span>
           </div>
           {this.state.address &&
           <ul className="nav nav-pills justify-content-end  align-self-center">
