@@ -1,7 +1,7 @@
 import { DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import Network from '../src/utils/Network.mjs'
 import Operator from '../src/utils/Operator.mjs'
-import {filterAsync, mapAsync, executeSync} from '../src/utils/Helpers.mjs'
+import {filterAsync, mapAsync, executeSync, overrideNetworks} from '../src/utils/Helpers.mjs'
 
 import {
   coin
@@ -87,7 +87,9 @@ class Autostake {
     console.log(data.prettyName, 'bot address is', botAddress)
 
     const client = await network.signingClient(wallet)
-    client.registry.register("/cosmos.authz.v1beta1.MsgExec", MsgExec)
+    if(client.connected){
+      client.registry.register("/cosmos.authz.v1beta1.MsgExec", MsgExec)
+    }
 
     const operatorData = data.operators.find(el => el.botAddress === botAddress)
     const operator = operatorData && Operator(operatorData)
@@ -118,16 +120,12 @@ class Autostake {
   }
 
   getDelegations(client) {
-    return client.restClient.getValidatorDelegations(client.operator.address, 1_000)
-      .then(
-        (delegations) => {
-          return delegations
-        },
-        (error) => {
-          console.log("ERROR:", error)
-          process.exit()
-        }
-      )
+    return client.restClient.getAllValidatorDelegations(client.operator.address, 250, (batches, total) => {
+      console.log("...batch", batches.length)
+    }).catch(error => {
+      console.log("ERROR:", error)
+      process.exit()
+    })
   }
 
   getGrantValidators(client, delegatorAddress) {
@@ -229,8 +227,15 @@ class Autostake {
   }
 
   getNetworksData(){
-    let response = fs.readFileSync('src/networks.json');
-    return JSON.parse(response);
+    const networksData = fs.readFileSync('src/networks.json');
+    const networks = JSON.parse(networksData);
+    try {
+      const overridesData = fs.readFileSync('src/networks.local.json');
+      const overrides = overridesData && JSON.parse(overridesData)
+      return overrideNetworks(networks, overrides)
+    } catch {
+      return networks
+    }
   }
 }
 

@@ -1,13 +1,14 @@
 import React, { useEffect, useReducer } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import Network from '../utils/Network.mjs'
+import { overrideNetworks } from '../utils/Helpers.mjs'
 import App from './App';
 
 import {
   Spinner
 } from 'react-bootstrap';
 
-import data from '../networks.json';
+import networksData from '../networks.json';
 
 function NetworkFinder() {
   const params = useParams();
@@ -19,6 +20,7 @@ function NetworkFinder() {
   )
 
   const getNetworks = () => {
+    let data = networksData
     return data.filter(el => el.enabled !== false).reduce((a, v) => ({ ...a, [v.name]: v}), {})
   }
 

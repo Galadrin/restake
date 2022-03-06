@@ -349,6 +349,13 @@
         "minimumReward": 1000
       },
       {
+        "address": "chihuahuavaloper1t85yx95l5pajl9hwkeztawqf8sg9uh4lglgu9w",
+        "botAddress": "chihuahua1h43hjfxlz8t6y5wewma63jz7melv46gj803735",
+        "runTime": "21:00",
+        "minimumReward": 1000
+      },
+
+      {
         "address": "chihuahuavaloper140l6y2gp3gxvay6qtn70re7z2s0gn57zum7h5l",
         "botAddress": "chihuahua12xpq68caw2aqdu70jm4k792g0v9prhrprkt2p6",
         "runTime": "22:00",
@@ -376,6 +383,12 @@
         "address": "chihuahuavaloper1m2dxkn94t97m7ah65hv4tg2xu0j2a2k4fdee20",
         "botAddress": "chihuahua1e44rluarkdw56dy2turnwjtvtg4wqvs037c2k8",
         "runTime": "21:00",
+        "minimumReward": 1000
+      },
+      {
+        "address": "chihuahuavaloper1s7xrzju6p9dms958j6zkddr7yqg6hmves2qgu4",
+        "botAddress": "chihuahua1juv28kuzuv85hzl5s3scz5rvlv7c9d5cszruv0",
+        "runTime": "22:00",
         "minimumReward": 1000
       }
     ],
@@ -463,7 +476,7 @@
     ],
     "image": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/luna.svg",
     "testAddress": "terra1rnszu7kumz5lmgdk3fv2pmzt3s8vhcddqep7d4",
-    "gasPrice": "170ukrw",
+    "gasPrice": "0.015uluna",
     "operators": [
       {
         "address": "terravaloper1f2t96sz9hnwsqnneux6v28xfgn07pkxjduvwjz",
@@ -784,6 +797,12 @@
         "botAddress": "lum1eml7agwd5x084ennlg6apvskufzrlvnrr687qd",
         "runTime": "21:00",
         "minimumReward": 1000
+      },
+      {
+        "address": "lumvaloper1068lx20jqswpwtykfezssdkn524kqlmlqjeqpa",
+        "botAddress": "lum19pqrxrl6n0g0mky4y79hlfzchprmsp5jxdyjew",
+        "runTime": "21:00",
+        "minimumReward": 1000
       }
     ],
     "authzSupport": true
@@ -838,6 +857,12 @@
       {
         "address": "comdexvaloper19qz6sgw7llrft2x05lp4swy569e5sla6gl3cuu",
         "botAddress": "comdex1e44rluarkdw56dy2turnwjtvtg4wqvs04yhxwj",
+        "runTime": "21:00",
+        "minimumReward": 1000
+      },
+      {
+        "address": "comdexvaloper14yh3sqetnphupx2r4jrjctpsqqg7jqmnmzpxc4",
+        "botAddress": "comdex1h43hjfxlz8t6y5wewma63jz7melv46gjr47jfp",
         "runTime": "21:00",
         "minimumReward": 1000
       }
