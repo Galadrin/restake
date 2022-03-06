@@ -16,8 +16,8 @@
                     "value": "1; mode=block"
                 },
                 {
-                    "key": "s-maxage",
-                    "value": "0"
+                    "key": "strict-transport-security",
+                    "value": "max-age=0"
                 }
             ]
         }
