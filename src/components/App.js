@@ -2,12 +2,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import React from 'react'
 import _ from 'lodash'
-import SigningClient from '../utils/SigningClient.mjs'
 import AlertMessage from './AlertMessage'
 import NetworkSelect from './NetworkSelect'
 import Wallet from './Wallet'
 import Coins from './Coins'
-import ValidatorLink from './ValidatorLink'
 import About from './About'
 
 import { MsgGrant, MsgRevoke } from "cosmjs-types/cosmos/authz/v1beta1/tx.js";
@@ -19,11 +17,8 @@ import {
 } from 'react-bootstrap';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import GitHubButton from 'react-github-btn'
-import Logo from '../assets/logo.png'
-import Logo2x from '../assets/logo@2x.png'
-import Logo3x from '../assets/logo@3x.png'
-
-import PoweredByAkash from '../assets/powered-by-akash.svg'
+import Logo from '../assets/logo-nest.svg'
+import TwitterPict from '../assets/twitterpict.svg'
 
 class App extends React.Component {
   constructor(props) {
@@ -185,12 +180,15 @@ class App extends React.Component {
       <Container>
         <header className="d-flex flex-wrap justify-content-between py-3 mb-4 border-bottom">
           <div className="logo d-flex align-items-center mb-3 mb-md-0 text-dark text-decoration-none">
-            <span onClick={() => this.setState({showAbout: true})} role="button" className="text-dark text-decoration-none">
-              <img src={Logo} srcSet={`${Logo2x} 2x, ${Logo3x} 3x`} alt="REStake" />
-            </span>
+            <a href="https://cros-nest.com" aria-current="page" class="brand w-nav-brand w--current">
+              <img src={Logo} alt="Cros-Nest" loading="lazy" width="114" />
+            </a>
           </div>
           {this.state.address &&
-          <ul className="nav nav-pills justify-content-end">
+          <ul className="nav nav-pills justify-content-end  align-self-center">
+            <li className="nav-item d-none d-xl-block">
+              <span className='nav-link font-weight-bold'>Your address</span>
+            </li>
             <li className="nav-item d-none d-xl-block">
               <CopyToClipboard text={this.state.address}
                 onCopy={() => this.setCopied()}>
@@ -209,13 +207,15 @@ class App extends React.Component {
             )}
           </ul>
           }
-          <div className="d-flex align-items-center mb-3 mb-md-0 text-dark text-decoration-none">
+
+          <div className="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none">
             <NetworkSelect show={this.state.showNetworkSelect} onHide={() => {this.setState({showNetworkSelect: false})}} networks={this.props.networks}
               network={this.props.network}
               validators={this.props.validators} getValidatorImage={this.getValidatorImage}
               changeNetwork={this.props.changeNetwork} loadValidatorImages={this.loadValidatorImages} />
           </div>
         </header>
+
         <div className="mb-5">
           <p className="lead fs-3 text-center mt-5 mb-5">REStake allows validators to <strong>auto-compound</strong> your <strong onClick={this.showNetworkSelect} className="text-decoration-underline" role="button">{this.props.network.prettyName}</strong> staking rewards for you</p>
           <AlertMessage message={this.state.error} variant="danger" dismissible={false} />
@@ -258,17 +258,19 @@ class App extends React.Component {
             <Button onClick={() => this.setState({showAbout: true})} variant="outline-secondary">More info</Button>
           </p>
         </div>
+
+
         <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-          <a href="https://akash.network" target="_blank" rel="noreferrer" className="col-md-4 mb-0 text-muted">
-            <img src={PoweredByAkash} alt="Powered by Akash" width={200} />
+          <a href="https://twitter.com/crosnest_com" target="_blank" rel="noreferrer" className="col-md-4 mb-0 text-muted">
+            <img src={TwitterPict} alt="twitter" width={40} />
           </a>
 
-          <a href="https://ecostake.com" target="_blank" rel="noreferrer" className="col-md-4 d-flex align-items-center justify-content-center me-lg-auto link-dark text-decoration-none">
+          <a href="https://ecostake.com" target="_blank" rel="noreferrer" className="col-md-4 d-flex align-items-center justify-content-center me-lg-auto link-secondary text-decoration-none">
             <span className="d-none d-sm-inline me-1">Built with 💚&nbsp;</span> by ECO Stake 🌱
           </a>
 
           <p className="col-md-4 mb-0 text-muted text-end justify-content-end d-none d-lg-flex">
-            <GitHubButton href="https://github.com/eco-stake/restake" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star eco-stake/restake on GitHub">Star</GitHubButton>
+            <GitHubButton href="https://github.com/Crosnest/restake" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star Crosnest/restake on GitHub">Star</GitHubButton>
           </p>
         </footer>
         <About show={this.state.showAbout} onHide={() => this.setState({showAbout: false})} />
